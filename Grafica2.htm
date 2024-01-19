@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .quadrato {
+      width: 10px;
+      height: 10px;
+      border: 1px solid black;
+      display: inline-block;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <label for="numeroDiv">Inserisci il numero di div:</label>
+  <input type="number" id="numeroDiv" min="1" value="1">
+  <button onclick="creaDiv()">Genera Div</button>
 
+  <script>
+    function creaDiv() {
+      var numeroDiv = document.getElementById("numeroDiv").value;
+      var container = document.body; // Puoi cambiare il contenitore a tuo piacimento
+
+      for (var i = 0; i < numeroDiv; i++) {
+        var nuovoDiv = document.createElement("div");
+        nuovoDiv.className = "quadrato";
+
+        // Colore a piacere
+        var colore = generaColoreCasuale();
+        nuovoDiv.style.backgroundColor = colore;
+
+        container.appendChild(nuovoDiv);
+      }
+    }
+
+    function generaColoreCasuale() {
+      var letters = "0123456789ABCDEF";
+      var colore = "#";
+      for (var i = 0; i < 6; i++) {
+        colore += letters[Math.floor(Math.random() * 16)];
+      }
+      return colore;
+    }
+  </script>
+</body>
+</html>

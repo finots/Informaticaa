@@ -3,73 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contatore e Tabellina</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-    }
-
-    #counter {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    #tableContainer {
-      display: none;
-    }
-  </style>
+  <title>Contatore e Tabelline</title>
 </head>
 <body>
 
-  <div id="counter">0</div>
+<div id="counter"></div>
 
-  <div id="tableContainer">
-    <h3>Tabellina:</h3>
-    <ul id="table"></ul>
-  </div>
+<script>
+  var counter = 1;
 
-  <script>
-    // Funzione per avviare il contatore e visualizzare la tabellina alla fine
-    function avviaContatore() {
-      let contatore = 1;
+  function updateCounter() {
+    document.getElementById('counter').innerHTML = 'Contatore: ' + counter;
 
-      // Intervallo di 1000 ms
-      const intervallo = setInterval(function() {
-        document.getElementById('counter').innerText = contatore;
-
-        if (contatore === 5) {
-          // Quando il contatore raggiunge 5, visualizza la tabellina
-          visualizzaTabellina();
-          clearInterval(intervallo); // Interrompi l'intervallo
-        } else {
-          contatore++;
-        }
-      }, 1000);
+    if (counter === 5) {
+      printMultiplicationTables();
+      clearInterval(intervalId);
+    } else {
+      counter++;
     }
+  }
 
-    // Funzione per visualizzare la tabellina
-    function visualizzaTabellina() {
-      const tableContainer = document.getElementById('tableContainer');
-      const table = document.getElementById('table');
-
-      // Mostra il contenitore della tabellina
-      tableContainer.style.display = 'block';
-
-      // Aggiungi elementi alla tabellina
-      for (let i = 1; i <= 10; i++) {
-        const listItem = document.createElement('li');
-        listItem.innerText = i;
-        table.appendChild(listItem);
+  function printMultiplicationTables() {
+    var tableContent = '<h2>Tabelline dal 1 al 10:</h2>';
+    for (var i = 1; i <= 10; i++) {
+      tableContent += '<p>';
+      for (var j = 1; j <= 10; j++) {
+        tableContent += i + ' x ' + j + ' = ' + (i * j) + '<br>';
       }
+      tableContent += '</p>';
     }
+    document.getElementById('counter').innerHTML = tableContent;
+  }
 
-    // Avvia il contatore quando la pagina è completamente caricata
-    document.addEventListener('DOMContentLoaded', function() {
-      avviaContatore();
-    });
-  </script>
+  var intervalId = setInterval(updateCounter, 1000);
+</script>
 
 </body>
 </html>

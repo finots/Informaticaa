@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    .square {
+      width: 98px;
+      height: 98px;
+      border: 2px solid black;
+      margin: 2px;
+      box-sizing: border-box;
+    }
+
+    .even {
+      background-color: #d3d3d3;
+    }
+
+    .odd {
+      background-color: #a9a9a9;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <script>
+    for (var i = 1; i <= 100; i++) {
+      document.write('<td class="square ' + ((i % 2 === 0) ? 'even' : 'odd') + '"></td>');
+      if (i % 10 === 0) {
+        document.write('</tr><tr>');
+      }
+    }
+  </script>
+</table>
+
+</body>
+</html>
 

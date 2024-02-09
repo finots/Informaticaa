@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcolatore Pannelli Solari</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    #container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 20px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #result {
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Calcolatore Pannelli Solari</h1>
+    <form id="solarPanelForm">
+        <label for="dailyConsumption">Consumo energetico medio giornaliero (kWh):</label>
+        <input type="number" id="dailyConsumption" required>
+
+        <label for="roofLength">Lunghezza del tetto (m):</label>
+        <input type="number" id="roofLength" required>
+
+        <label for="roofWidth">Larghezza del tetto (m):</label>
+        <input type="number" id="roofWidth" required>
+
+        <label for="efficiency">Efficienza dei pannelli solari (%):</label>
+        <input type="number" id="efficiency" required>
+
+        <button type="submit">Calcola</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('solarPanelForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var dailyConsumption = parseFloat(document.getElementById('dailyConsumption').value);
+        var roofLength = parseFloat(document.getElementById('roofLength').value);
+        var roofWidth = parseFloat(document.getElementById('roofWidth').value);
+        var efficiency = parseFloat(document.getElementById('efficiency').value);
+
+        var roofArea = roofLength * roofWidth;
+        var solarPanelPower = (dailyConsumption / efficiency).toFixed(2);
+        var panelsNeeded = Math.ceil(solarPanelPower / 250); // Assuming each panel is 250W
+
+        var resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <h2>Risultato</h2>
+            <p>Potenza necessaria dei pannelli solari: <strong>${solarPanelPower} kW</strong></p>
+            <p>Pannelli solari necessari: <strong>${panelsNeeded}</strong></p>
+        `;
+    });
+</script>
+
+</body>
+</html>

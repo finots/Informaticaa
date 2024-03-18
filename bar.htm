@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+ 
+</head>
+
+<body>
+  <h1>Bar v1</h1>
+
+  <div>
+    <button onclick="MostraMenudrink()">Menu </button>
+    <button onclick="contadrink()"> Numero drink presenti nel menu:</button>
+
+    <button onclick="AddDrink()"> Aggiungi Drink al menu</button>
+    <button onclick="RemoveDrink()"> Rimuovi Drink dal menu</button>
+    <button onclick="Acquistadrink()" > Acquista Drink dal menu</button>
+
+    <p id="menu"></P>
+  </div>
+
+  <div>
+<p>Ordine da inviare:</p>
+<p id="ordineMenu"></p></p>
+
+  </div>
+  <script >
+    let drinks = [
+      "Mojito",
+      "Martini",
+      "Piña Colada",
+      "Margarita",
+      "Cosmopolitan",
+      "Old Fashioned",
+      "Negroni",
+      "Bloody Mary",
+      "Whiskey Sour",
+      "Sangria",
+      "Moscow Mule",
+      "Long Island Iced Tea",
+      "Mimosa",
+      "Daiquiri",
+      "Caipirinha",
+      "Gin and Tonic",
+      "Tequila Sunrise",
+      "White Russian",
+      "Manhattan",
+      "Irish Coffee"
+    ];
+
+    let Carrello=[
+
+    ];
+
+document.getElementById("menu").innerHTML = drinks.join("<br>");  
+
+
+    function contadrink(){
+      let numeroDrink = drinks.length;
+      document.getElementById("menu").innerHTML = numeroDrink;  
+    }
+    function MostraMenudrink(){
+   
+      document.getElementById("menu").innerHTML = drinks.join("<br>");
+    }
+
+
+function AddDrink(){
+
+  let nuovoelemento = prompt("Inserisci il nome del drink");
+
+
+ 
+  drinks.push(nuovoelemento);
+  document.getElementById("menu").innerHTML = drinks.join("<br>");
+}
+
+
+
+
+   function RemoveDrink(){
+
+drinks.pop();
+document.getElementById("menu").innerHTML = drinks.join("<br>");
+
+   }
+
+   function Acquistadrink(){
+
+let OrdineElemento = prompt("che cosa vuoi bere?");
+Carrello.push(OrdineElemento);
+document.getElementById("ordineMenu").innerHTML = Carrello.join("<br>");
+
+   }
+
+  </script>
+</body>
+
+</html>
